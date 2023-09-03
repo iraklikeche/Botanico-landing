@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no"
+    />
+    <link href="images/favicon.png" rel="icon" />
+    <title>Silk Hospitality - Love Month</title>
+    <meta name="description" content="Silk Hospitality - Love Month" />
+    <meta name="author" content="silkhospitality.com" />
+
+    <!-- Web Fonts
+========================= -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
+      type="text/css"
+    />
+
+    <!-- Scripts
+========================= -->
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Stylesheet
+========================= -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/font-awesome/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+
+    <div id="main-wrapper" class="oxyy-login-register">
+      <div class="hero-wrap d-flex align-items-center">
+        <div class="hero-mask opacity-4 bg-secondary"></div>
+        <div
+          class="hero-bg hero-bg-scroll"
+          style="background-image: url('./images/background.jpg')"
+        ></div>
+        <div class="hero-content w-100">
+          <div class="container">
+            <div
+              class="row g-0 min-vh-100 justify-content-center align-items-center"
+            >
+              <!-- Register Form
+		  ========================= -->
+              <div class="col-md-6 d-flex flex-column align-items-center py-5">
+                <!-- LOGO -->
+                <div class="logo mt-5 mb-3">
+                  <a href="index.html" title="Oxyy"
+                    ><img src="images/RC-logo.svg" alt="Oxyy"
+                  /></a>
+                </div>
+
+                <!-- Register Form Inputs
+		  ========================= -->
+                <div class="container my-auto py-4 shadow-lg bg-white">
+                  <div class="row">
+                    <div class="col-11 col-lg-10 mx-auto">
+                      <h4 class="fw-600 text-center my-3 a-form-title">
+                        Botanico Memory Tour Registration Form
+                      </h4>
+                      <div class="a-form">
+                        <div class="mb-3">
+                          <label
+                            class="form-label text-dark fw-600"
+                            for="emailAddress"
+                            >Name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control rounded-0"
+                            id="name"
+                            required
+                            placeholder="Enter Your Name"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label
+                            class="form-label text-dark fw-600"
+                            for="emailAddress"
+                            >Email Address</label
+                          >
+                          <input
+                            type="email"
+                            class="form-control rounded-0"
+                            id="emailAddress"
+                            required
+                            placeholder="Enter Your Email"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label
+                            class="form-label text-dark fw-600"
+                            for="emailAddress"
+                            >Mobile Number</label
+                          >
+                          <input
+                            type="number"
+                            class="form-control rounded-0"
+                            id="phonenumber"
+                            required
+                            placeholder="XXX XX XX XX"
+                          />
+                        </div>
+                        <div class="d-grid my-4">
+                          <button
+                            class="btn btn-dark rounded-0"
+                            id="submit"
+                            type="submit"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                        <p class="text-center text-muted text-2 mb-0">
+                          By fill the form, you agree to Silk Development
+                          <a href="#">Terms</a> and <a href="#">Privacy</a>
+                        </p>
+                      </div>
+
+                      <!-- Response Start -->
+                      <div class="a-respond">
+                        <lottie-player
+                          src="https://assets8.lottiefiles.com/packages/lf20_8fl3677q.json"
+                          background="transparent"
+                          speed="1"
+                          style="width: 200px; height: 200px"
+                          loop
+                          autoplay
+                        ></lottie-player>
+                        <div class="a-respond-t">Thank You!</div>
+                        <div class="a-respond-c">
+                          We will contact you shortly for the confirmation
+                        </div>
+                        <div class="a-respond-n">
+                          For additional information please contact us
+                        </div>
+                      </div>
+                      <!-- Response End -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Register Form End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script -->
+
+    <script>
+      $(document).ready(function () {
+        $(".a-respond").hide();
+
+        $("#submit").click(function () {
+          var sendmail = "sendmail";
+          var name = $("#name").val();
+          var email = $("#emailAddress").val();
+          var phone = $("#phonenumber").val();
+          var pfrom = $("#periodfrom").val();
+          var pto = $("#periodto").val();
+
+          if (
+            name == "" ||
+            email == "" ||
+            phone == "" ||
+            pfrom == "" ||
+            pto == ""
+          ) {
+            $(".form-control").append().css("border", "1px solid red");
+            console.log("please fill the forms");
+          } else {
+            $.ajax({
+              url: "sendmail.php",
+              type: "POST",
+              data: {
+                sendmail: sendmail,
+                name: name,
+                email: email,
+                phone: phone,
+                pfrom: pfrom,
+                pto: pto,
+              },
+              success: function (data) {
+                $(".a-form").hide();
+                $(".a-respond").fadeIn(500);
+                console.log(data);
+              },
+            });
+          }
+        });
+      });
+    </script>
+
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/theme.js"></script>
+  </body>
+</html>
